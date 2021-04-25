@@ -1,0 +1,331 @@
+---
+title: "R Tutorial"
+author: "Wei Siang"
+date: "02/11/2019"
+output:html_document: default
+---
+
+# Tutorial 1: Introduction to R Studio and Base R
+## Introduction to R:
+
+R is a free, open-source programming language for conducting statistical analysis and visualization. It will be the platform and language we will be using for the class.
+To download R, go to the following website:
+You will see the links for downloading R.
+
+https://mirror.its.sfu.ca/mirror/CRAN/
+
+download the latest version that 3.6.1.
+
+
+1. Microsoft Windows:
+  i. After clicking on the link, select “base” since you are installing R for the first time. 
+  ii. Follow the Windows installation instruction. Choose “Accept Default Startup Options”.
+
+2. Mac OS X:
+  i. After clicking on the link, select the most up-to-date version (“R-3.6.1.pkg”). 
+  ii. Follow the OS X installation instruction.
+
+## Introduction to RStudio:
+RStudio is an Integrated Development Environment (IDE) for R. An IDE is a software / application that provides the full set of facilities for conducting the tasks related to programming such as code writing, compiling, debugging, and execution.
+
+RStudio has an easy-to-understand interface which groups your tasks by window. The windows are arranged such that you can see your codes, notes, variables, graphs, etc. on a single screen. We shall elaborate further on this later in this tutorial. Before that, let us first download and install the software.
+    
+1. Click on the link below to get to the RStudio download site: https://rstudio.com/products/rstudio/download/#download
+
+    
+2. Scroll down until you see several links 
+    
+3. Select the installer for “macOS 10.12+ (64-bit)”, or “Windows 10/8/7 (64-bit)”).
+    
+4. Follow the installation instructions for your respective OS.
+    
+    
+After you have installed the software, open it. You will see an interface. 
+The interface consists of 4 windows:
+
+1. Console (bottom left) – the main window for typing codes for immediate execution / testing. 
+2. Global environment (top right) – shows the data and variables that you have imported / created in your current environment.
+3. Script (top left) – stores and organises codes and notes. This is where we type and save our codes for future use.
+4. Bottom right – this pane here has multiple tabs showing:
+  i. The files in your current directory;
+  ii. Any graph that you plot; and
+  iii. Lists of packages available for installation.
+  iv. help
+  v. viewer
+        
+The convenient thing about RStudio is that many functions can be conducted (e.g. opening files, installing packages, etc.) just by clicking the mouse. The codes corresponding to the action will appear in the Console panel.
+
+## Some Important Features of RStudio:
+ * Install Packages
+ * Set Working Directory
+ * Import Data set
+ 
+
+### Installing Packages
+Click on the “Packages” tab in the bottom right panel. Scroll down the packages and select “**tidyverse**” by checking the box or type: 
+
+```{r}
+
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+
+```
+
+
+
+However, to use a package you should load the package with the following line of code: 
+
+```{r}
+library(tidyverse)
+```
+Click on the history tab in the top right panel. 
+
+You’ll notice that “**library(tidyverse)**” also appears here. The history tab keeps track of every single code / action executed during your session.
+
+### Setting working Directory
+By setting working directory we tell RStudio where the files for opening are located. It will also save the files in the same directory set using the code below: 
+```{r}
+setwd("/x")
+```
+
+### Importing Data set
+
+We can use RStudio Import Data set section at the Environment (next to the broom sign) or use the following line of code. Please note that following line of codes means read a Comma Separated Value (csv) file (*they are the same as excel files and using them save lots of space*) located at **"/x/solar_system.csv"** and call it solar_system that is (solar_system <- ). The **<-** is used to tell R that we want to store a series of values (e.g. data sets, vectors, name etc.) to the name written before **<-**
+```{r}
+solar_system <- read.csv("/x/solar_system.csv")
+```
+
+
+
+# Creating a Data Table in Script
+Copy and paste the following codes in your script (top left panel):
+A data set can includes several different types of variables including: numerical, factor, character, integer and Boolean.
+
+  * Numerical: continuous variables such as income, temperatures, distances and prices are usually considered as numerical variables suc
+  * Factor: variables providing information about categories. Example of such variables are income deciles, categories of education, groups of planets etc. 
+  * character: are those variables indicating the names or other features of an observation in form of a character such as name of planets, name of cities etc. 
+  * integer: the variables taking values of 1,2,3,... are integer.
+  * Boolean: Boolean are operators such as **&** (and), **|**, **FALSE** and **TRUE**. You might know them from your search inquiries in Google or other databases.
+   * “&” - “and” .
+   * “|” - “or” 
+   * “=” – equal to
+ 
+```{r}
+names <- c("Earth", "Jupiter", "Mars", "Mercury", "Neptune", "Pluto", "Saturn", "Uranus", "Venus")
+
+position <- c(3, 5, 4, 1, 8, 9, 6, 7, 2)
+
+orbit <- c("365.256 days", "11.862 yrs", "685.758 days", "87.97 days", "164.8 yrs", "247.94 yrs", "29.4571 yrs", "84.0205 yrs", "224.7 days")
+
+day <- c(1, 0.41, 1.026, 58.646, 0.671, -6.387, 0.426, -0.718, -243.019)
+
+mass <- c(1, 317.8, 0.107, 0.055, 17.147, 0.00218, 95.159, 14.536, 0.815)
+
+moons <- c(1, 79, 2, 0, 14, 0, 53, 27, 0)
+
+habitable <- c(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
+
+```
+
+Run the script. You do this by selecting completely every line of code you want to run, then clicking the “run” button on the top right of the panel.
+You have created 7 vectors with the names “names”, “position”, “orbit”, “day_length”, “mass”, “no_of_moons” and “habitable”.
+
+
+
+### Textbook Reference: 
+**Pages 10-11 of the textbook / reading talks about vectors, how to create them, commands for knowing their extract properties, indexing particular elements in the vectors and creating subsets from them.**
+
+Now look at the other panels. What do you notice?
+   1. The same lines of code are repeated in the “Console” panel. What the script does is take the selected lines, and run them through the console.
+    2. At the same time, you’ll also notice that these lines are recorded in your history.
+    3. Click on the “Environment” tab in the top right panel, you’ll also notice a list of new variables. These are the vectors you created using the script above. 
+
+The tab also provided some additional details on each vector / variable. The most important are “type” and “length”.
+
+    i. Type: There are three primary types of data – 1) “numeric”; 2) “character”; and 3) “logical”. Numeric data are data presented as numbers. They can be “integers” or “double” (with decimal places). Character data are data presented as text. Character data are always presented within quotation marks (“”). Logical data are data presented as TRUE / FALSE statements. Note that R is case sensitive so TRUE / FALSE statements must be in CAPS with no quotation marks.
+   
+    ii. Length: Note that every single vector is the same length (9 variables). When combining vectors into tables, it is important that they are the same length.
+
+Copy and paste the following line of code to your script and run it:
+
+```{r}
+solar_system <- data.frame(planet_names = names, position_in_system = position, orbit, day_length = day, mass_earths = mass, no_of_moons = moons, habitable)
+solar_system
+```
+
+
+
+Run this line of script. What do you notice?
+    
+    1) In the “Environment” tab, you see a new entry “solar_system”. Notice that the type for “solar_system” is not numeric, character or logical but rather “data.frame”.
+
+Data Frames are specialised tables in which the vectors are organised in columns as variables with the rows containing the set of value for each variable.
+   
+    2) As is always the case, the line you just ran will also be reflected in your “Console” and captured in your “History”.
+
+Type solar_system in your console to show the data table (you can also type it into the script and run it).
+```{r}
+solar_system
+```
+
+
+Go to the solar_system line in the “Environment” panel. You’ll notice a table symbol.
+
+Click on this symbol. You’ll notice a new tab appearing in your “Scripts” panel, labelled solar_system. This shows the table you’ve created. 
+
+## Transforming between the types of data. 
+
+Sometimes we have change between different types of data. Consider the solar_system data set and run the following line of code: 
+
+```{r}
+str(solar_system)
+```
+
+str() is a function showing the structure of a data set. Looking at the structure of variables we can see that habitable is a logical. However, we want to change habitable to factor (i.e. categorical variable). this is very easy to do in R. There are a series of function start with "**as.**". Some examples are as.factor(), as.numerical and so on. Now look at the following line of code: 
+
+```{r}
+solar_system$habitable <- as.factor(solar_system$habitable)
+str(solar_system)
+```
+
+So as you can see with as.factor function we told R to choose habitable variable from data set of solar_system ($ is a function that gives us access to the name of variables in a dataset). Then transform this variable as a factor variable as.factor(solar_system$habitable). Finally show us the structure of solar_system data set. After the transformation the variable type of habitable changed to factor. 
+
+You can filter and sort data using this table.
+However, before we proceed further, let’s first try to save your work.
+
+## Exporting Your Table to Excel
+Copy and paste the following lines of code to your script:
+
+```{r}
+
+write.csv(solar_system, 'solar_system.csv')
+```
+
+
+
+The last line writes the data frame into an csv file.
+Package libraries: Packages are user-contributed codes / functions / data for extending R's capabilities and making it simpler to use. To put simply, they are shortcuts which allow you to perform complex tasks with just a single line of code.
+
+## Textbook Reference: 
+**Page 25 of the textbook / reading give some background as well as an example for loading the “ggplot2” graphing package.**
+
+
+
+You can see a brief description of the package which is to “Read, Write and Edit csv Files”. 
+
+You can even click on it to see the syntax for writing the command
+
+
+After executing your script, go to the “Files” tab in the bottom right panel. Scroll down to the bottom. You’ll see that a new Excel file has been created titled “solar_system.csv”. You can open the file and see that the table is the same as that of your data frame.
+
+
+
+# Data Manipulation Using Base R and Tidyverse
+Copy and paste the following lines of code to your script and run them:
+
+```{r}
+library(tidyverse)
+```
+
+
+
+“Tidyverse” is actually a family of packages that deals with a range of R functions from data manipulation to analysis and visualization. You can see the downloaded packages in the “Console” panel.
+
+
+We will be using some functions from “dplyr” in this section and plotting graphs using “ggplot2” in a later tutorial.
+
+### Rearranging the Table Using “arrange()”:
+Type “solar_system” in your command line (“Console” panel) and press enter. Look at the table that appears. You’ll notice that the planets are arranged in alphabetical order. What if we want to arrange them relative to their distance from the sun? We will need to sort them according to their “position_in_system” (column 2).
+Copy and paste the following lines of code to your script and run them:
+
+```{r}
+library(tidyverse)
+solar_system_sorted <- arrange(solar_system, position_in_system)
+solar_system_sorted
+```
+
+
+
+You’ll notice that you have created a new data frame “solar_system_sorted”, where the planets are now arranged in order.
+
+
+### Adding New Columns to the Data Frame Using “mutate()”:
+
+Say we are interested in finding out if any of the planets besides earth could potentially be colonised (maybe using SpaceX). To find the answer, we first need to obtain additional information.
+Copy and paste the following lines of code to your script and run them:
+
+
+You have now created a new data frame titled “colony_unsorted” with three new columns of data added (high temperature in Celsius, low temperature in Celsius, and main composition).
+```{r}
+library(tidyverse)
+temp_high_C <- c(427, 465, 58, 20, 35700, 11700, 4737, 7000, -218)
+temp_low_C <- c(-173, 465, -88, -153, -145, -178, -224, -218, -240)
+main_comp <- c("rock", "rock", "rock", "rock", "gas", "gas", "gas", "gas", "rock")
+
+colony_unsorted <- solar_system_sorted %>%
+    mutate(temp_high_C = temp_high_C, temp_low_C = temp_low_C, main_comp = main_comp)
+colony_unsorted
+```
+
+
+You’ll notice the code above uses a strange symbol “%>%”. This symbol is known as the “Pipe Operator”. It enables you to chain / link multiple functions together (like a pipe) and means to “take A and do B”. Therefore, in the code above, the it means “take solar_system_sorted and mutate ……”.
+
+### Filtering the Data Using “filter()”:
+
+Now let’s filter the data to identify planets that could potentially be hospital to humans. There are four criteria that must be met:
+  
+    1) The planet must be a rock;
+    2) The planet must not be too hot;
+    3) The planet must not be too cold; and
+    4) The planet must not be Earth (since we’re already staying there). 
+Copy and paste the following lines of code to your script:
+
+```{r}
+library(tidyverse)
+colony_filtered <- colony_unsorted %>% 
+    filter(temp_high_C < 200 & temp_low_C > -200 & main_comp == "rock" & habitable != TRUE)
+colony_filtered
+```
+
+
+Run the codes. You have created a data frame “colony_filtered” showing the planets that meet all the four criteria above.
+
+
+Mars is the only planet identified. Therefore, we hope that SpaceX succeeds!
+Once again, the pipe operator is used in our function above. Here the pipe operation meant “take colony_unsorted and filter ……”
+You’ll also notice the presence of the “&” symbol. This is a **Boolean** operator that means “and” and indicates that ALL four criteria must be satisfied. If only some of the conditions need to be satisfied, you can use the “or” operator which in R is represented by the symbol “|”.
+##Textbook Reference: 
+**You can check page 6 of the textbook / reading for different types of Boolean operators. They include:**
+
+    1) “&&” - test for “and” that gives TRUE / FALSE.
+    2) “||” - test for “or” that also gives TRUE / FALSE
+    3) “!” – test for “not” that also gives TRUE / FALSE
+    4) “==” – equal to
+    5) “>=” “<=” - greater than or equal to and less than or equal to
+    6) “!=” – not equal to
+
+Now that you have obtained your results, let us try to save the data in Excel. 
+Use the following code:
+
+```{r}
+write.csv(colony_filtered, 'solar_system.csv')
+```
+
+
+
+Open “solar_system.csv”, what do you notice?
+
+“solar_system.csv” contains only one sheet with your filtered results above. The “solar_system” table is gone. What the code has done is overwritten your old file since the file names are the same. You can either save the data in a separate file, or try the following code:
+
+```{r}
+write.csv(list(solar_system, colony_filtered), file='solar_system.csv')
+```
+
+
+
+Open “solar_system.csv”. Now you have two sheets in the file with the two tables you created.
+Click on the small save button at the top left of your scripts panel:
+
+Save your script file.
+
+    
+    
